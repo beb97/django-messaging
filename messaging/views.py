@@ -1,5 +1,5 @@
-from django.http import HttpResponse, Http404
-from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404, redirect
 
 from .models import Message
 
@@ -23,5 +23,13 @@ def results(request, message_id):
     return HttpResponse(response % message_id)
 
 
+def question(request):
+    Message.objects.create_message(request.POST['question'])
+    return redirect('messaging:index')
+
+
 def answer(request, message_id):
-    return HttpResponse("Answering : %s" % message_id)
+    message = get_object_or_404(Message, pk=message_id)
+    message.answers.create_message(request.POST['answer'])
+    return redirect('messaging:detail', message_id=message.id)
+    # return redirect('messaging:detail', 'message_id':message.id)

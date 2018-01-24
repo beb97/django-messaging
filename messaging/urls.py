@@ -12,4 +12,5 @@ urlpatterns = [
     path('<int:message_id>/results/', views.results, name='results'),
     # messages/1/answer/
     path('<int:message_id>/answer', views.answer, name='answer'),
+    path('question/', views.question, name='question')
 ]
