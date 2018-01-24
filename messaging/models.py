@@ -1,19 +1,18 @@
 from django.db import models
-from django.utils import timezone
+from datetime import datetime
 
 
 class MessageManager(models.Manager):
     def create_message(self, content):
         message = self.create(content=content,
-                              author="default",
-                              creation_date=timezone.now())
+                              author="default")
         return message
 
 
 class Message(models.Model):
     content = models.CharField(max_length=2000)
     author = models.CharField(max_length=100)
-    creation_date = models.DateTimeField(default=timezone.now())
+    creation_date = models.DateTimeField(default=datetime.now)
 
     objects = MessageManager()
 
@@ -25,5 +24,6 @@ class Message(models.Model):
 
 
 class Answer(Message):
+    parent = models.ForeignKey(Message, on_delete=models.CASCADE, related_name='answers')
 
 

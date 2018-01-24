@@ -1,3 +1,5 @@
+<a href="{% url 'messaging:index' %}">Accueil</a>
+
 <h1>  {{ message.content }} </h1>
 <div> id : {{ message.id }} </div>
 <div> créé le : {{ message.creation_date|date:"d-m-Y H:i" }} </div>
@@ -11,3 +13,11 @@
 
     <input type="submit" value="submit" />
 </form>
+
+<h2>Réponse</h2>
+<div> Reponses : {{ message.answers.all }} </div>
+<ol>
+    {% for answer in message.answers.all%}
+        <li>{{ answer.content }} @ {{ message.creation_date|date:"d-m-Y H:i" }}</li>
+    {% endfor %}
+</ol>
