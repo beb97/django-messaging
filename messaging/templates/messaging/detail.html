@@ -1,0 +1,13 @@
+<h1>  {{ message.content }} </h1>
+<div> id : {{ message.id }} </div>
+<div> créé le : {{ message.creation_date|date:"d-m-Y H:i" }} </div>
+<div> par : {{ message.author }} </div>
+
+<h2>Répondre</h2>
+<form action="{% url 'messaging:answer' message.id %}" method="post">
+{% csrf_token %}
+    <textarea type="text" name="answer" id="answer" value="" placeholder=""
+              rows="5" cols="50"></textarea>
+
+    <input type="submit" value="submit" />
+</form>

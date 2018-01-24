@@ -1,6 +1,6 @@
 # django-messaging
 
-Cloner le projet django-messaging
+Cloner le projet django-messaging :
  `git clone https://github.com/beb97/django-messaging`
 
 Se positionner dans le repertoire créé

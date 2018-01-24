@@ -1,0 +1,10 @@
+{% if latest_messages %}
+    <ol>
+    {% for message in latest_messages %}
+        <li><a href="{% url 'messaging:detail' message.id %}">{{ message.content }}</a></li>
+    {% endfor %}
+    </ol>
+{% else %}
+    <p>No messages are available.</p>
+{% endif %}
+
