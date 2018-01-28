@@ -1,35 +1,41 @@
-from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 
-from .models import Message
+from .models import Question
 
 
 def index(request):
-    latest_messages = Message.objects.order_by('creation_date')[:5]
+    questions_list = Question.objects.order_by('creation_date')[:5]
     context = {
-        'latest_messages': latest_messages,
+        'questions_list': questions_list,
     }
     return render(request, 'messaging/index.html', context)
-    # return HttpResponse(template.render(context, request))
 
 
-def detail(request, message_id):
-    message = get_object_or_404(Message, pk=message_id)
-    return render(request, 'messaging/detail.html', {'message': message})
-
-
-def results(request, message_id):
-    response = "Reponses : %s"
-    return HttpResponse(response % message_id)
+def detail(request, question_id):
+    current_question = get_object_or_404(Question, pk=question_id)
+    return render(request, 'messaging/detail.html', {'question': current_question})
 
 
 def question(request):
-    Message.objects.create_message(request.POST['question'])
+    Question.objects.create(content=request.POST.get('question'),
+                            title=request.POST.get('title'))
     return redirect('messaging:index')
 
 
-def answer(request, message_id):
-    message = get_object_or_404(Message, pk=message_id)
-    message.answers.create_message(request.POST['answer'])
-    return redirect('messaging:detail', message_id=message.id)
-    # return redirect('messaging:detail', 'message_id':message.id)
+@login_required
+def answer(request, question_id):
+    answered_question = get_object_or_404(Question, pk=question_id)
+    answered_question.answers.create_message(request.POST.get('answer'))
+    return redirect('messaging:detail', question_id=question_id)
+
+
+def search(request):
+    search_term = request.GET.get('search')
+    questions_list = []
+    if search_term:
+        questions_list = Question.objects.filter(title__contains=search_term).order_by('creation_date')[:5]
+    context = {
+        'questions_list': questions_list,
+    }
+    return render(request, 'messaging/search.html', context)
