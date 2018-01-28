@@ -1,0 +1,25 @@
+{% extends "messaging/__l_single_col.html" %}
+
+
+{% block main_col %}
+
+<article>
+    <div >
+        <table>
+            <tr>
+                <td>Pseudo : <span class="text-info">{{ user.username }}</span></td>
+            </tr>
+            <tr>
+                <td>Prénom : <span class="text-info">{{ user.first_name }}</span></td>
+            </tr>
+            <tr>
+                <td>Nom : <span class="text-info">{{ user.last_name }}</span></td>
+            </tr>
+            <tr>
+                <td>Mail : <span class="text-info">{{ user.email }}</span></td>
+            </tr>
+        </table>
+    </div>
+</article>
+
+{% endblock %}
