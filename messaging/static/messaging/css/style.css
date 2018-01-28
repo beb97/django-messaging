@@ -1,0 +1,14 @@
+body {
+    background: #f8f8f8;
+}
+
+.container {
+    /* width-max: 80%; */
+    /* width: 800px; */
+    background: white;
+    border: 1px solid #17a2b8;
+}
+
+main {
+    margin: 10px;
+}
