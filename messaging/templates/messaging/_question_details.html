@@ -1,0 +1,7 @@
+<h2>  {{ question.title }} </h2>
+<details>
+    <summary>{{ question.content }}</summary>
+<div> id : {{ question.id }} </div>
+<div> créé le : {{ question.creation_date|date:"d-m-Y H:i" }} </div>
+<div> par : {{ question.author }} </div>
+</details>

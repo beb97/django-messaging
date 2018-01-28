@@ -1,0 +1,9 @@
+<h2>Rechercher :</h2>
+<form action="{% url 'messaging:search' %}" method="get">
+<!--{% csrf_token %}-->
+    <div class="form-group">
+        <input type="text" name="search" id="search" value="" placeholder="Titre"/>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Rechercher</button>
+</form>

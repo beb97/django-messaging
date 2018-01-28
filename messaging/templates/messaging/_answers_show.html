@@ -1,0 +1,13 @@
+<h2>Réponses</h2>
+<div>
+{% if question.answers.all %}
+    {{ question.answers.all|length }} réponse(s).
+{% else %}
+    Aucune réponse.
+{% endif %}
+</div>
+<ol>
+    {% for answer in question.answers.all%}
+        <li>{% include "messaging/_answer_details.html" with answer=answer %}</li>
+    {% endfor %}
+</ol>

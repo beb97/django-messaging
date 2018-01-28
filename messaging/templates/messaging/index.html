@@ -1,21 +1,9 @@
+{% extends "messaging/__l_single_col.html" %}
 
 
-<h1>Questions :</h1>
-{% if latest_messages %}
-    <ol>
-    {% for message in latest_messages %}
-        <li><a href="{% url 'messaging:detail' message.id %}">{{ message.content }}</a></li>
-    {% endfor %}
-    </ol>
-{% else %}
-    <p>No messages are available.</p>
-{% endif %}
+{% block main_col %}
 
-<h2>Ajouter une question :</h2>
-<form action="{% url 'messaging:question' %}" method="post">
-{% csrf_token %}
-    <textarea type="text" name="question" id="question" value="" placeholder="votre question"
-              rows="5" cols="50"></textarea>
+{% include "messaging/_questions_show.html" %}
+{% include "messaging/_question_create.html" %}
 
-    <input type="submit" value="submit" />
-</form>
+{% endblock %}

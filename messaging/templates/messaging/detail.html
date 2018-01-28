@@ -1,23 +1,10 @@
-<a href="{% url 'messaging:index' %}">Accueil</a>
+{% extends "messaging/__l_single_col.html" %}
 
-<h1>  {{ message.content }} </h1>
-<div> id : {{ message.id }} </div>
-<div> créé le : {{ message.creation_date|date:"d-m-Y H:i" }} </div>
-<div> par : {{ message.author }} </div>
 
-<h2>Répondre</h2>
-<form action="{% url 'messaging:answer' message.id %}" method="post">
-{% csrf_token %}
-    <textarea type="text" name="answer" id="answer" value="" placeholder=""
-              rows="5" cols="50"></textarea>
+{% block main_col %}
 
-    <input type="submit" value="submit" />
-</form>
+{% include "messaging/_question_details.html" with question=question %}
+{% include "messaging/_answer_create.html" %}
+{% include "messaging/_answers_show.html" %}
 
-<h2>Réponse</h2>
-<div> Reponses : {{ message.answers.all }} </div>
-<ol>
-    {% for answer in message.answers.all%}
-        <li>{{ answer.content }} @ {{ message.creation_date|date:"d-m-Y H:i" }}</li>
-    {% endfor %}
-</ol>
+{% endblock main_col %}
