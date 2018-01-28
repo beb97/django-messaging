@@ -1,5 +1,5 @@
 from django.db import models
-from datetime import datetime
+from django.utils import timezone
 
 
 class MessageManager(models.Manager):
@@ -11,7 +11,7 @@ class MessageManager(models.Manager):
 class Message(models.Model):
     content = models.CharField(max_length=2000)
     author = models.CharField(max_length=100, default="no_author")
-    creation_date = models.DateTimeField(default=datetime.now)
+    creation_date = models.DateTimeField(default=timezone.now)
 
     objects = MessageManager()
 
@@ -19,8 +19,19 @@ class Message(models.Model):
         return self.content
 
 
+class QuestionManager(models.Manager):
+    def get_answered_questions(self):
+        questions = self.exclude(answers=None)
+        return questions
+
+
 class Question(Message):
     title = models.CharField(max_length=200)
+
+    objects = QuestionManager()
+
+    def __str__(self):
+        return self.title
 
 
 class Answer(Message):
