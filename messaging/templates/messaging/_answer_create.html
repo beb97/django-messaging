@@ -1,10 +1,12 @@
-<h2>Répondre</h2>
-<form action="{% url 'messaging:answer' question.id %}" method="post">
-{% csrf_token %}
-    <div class="form-group">
-        <textarea type="text" name="answer" id="answer" value="" placeholder="Votre réponse"
-              rows="5" cols="50"></textarea>
-    </div>
+<article>
+    <h2>Répondre</h2>
+    <form action="{% url 'messaging:answer' question.id %}" method="post">
+    {% csrf_token %}
+        <div class="form-group">
+            <textarea type="text" name="answer" id="answer" value="" placeholder="Votre réponse"
+                  rows="3" cols="40"></textarea>
+        </div>
 
-    <button type="submit" class="btn btn-primary">Soumettre réponse</button>
-</form>
+        <button type="submit" class="btn btn-info">Soumettre réponse</button>
+    </form>
+</article>

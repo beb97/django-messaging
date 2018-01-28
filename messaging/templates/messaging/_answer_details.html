@@ -1,1 +1,4 @@
-{{ answer.content }} @ {{ answer.creation_date|date:"d-m-Y H:i" }}
+{{ answer.content }}
+<span class="text-right">
+    {% include "messaging/_message_metadata.html" %}
+</span>

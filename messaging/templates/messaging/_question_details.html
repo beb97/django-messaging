@@ -1,7 +1,7 @@
-<h2>  {{ question.title }} </h2>
-<details>
-    <summary>{{ question.content }}</summary>
-<div> id : {{ question.id }} </div>
-<div> créé le : {{ question.creation_date|date:"d-m-Y H:i" }} </div>
-<div> par : {{ question.author }} </div>
-</details>
+<article>
+    <h2 class="bg-info text-white">  {{ question.title }} </h2>
+    <div>{{ question.content }}</div>
+    <div class="text-right">
+        {% include "messaging/_message_metadata.html" %}
+    </div>
+</article>

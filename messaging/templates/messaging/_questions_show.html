@@ -1,10 +1,12 @@
-<h2>Questions :</h2>
-{% if questions_list %}
-    <ol>
-    {% for question in questions_list %}
-        <li>{% include "messaging/_question_summary.html" %}</li>
-    {% endfor %}
-    </ol>
-{% else %}
-    <p>Aucune question.</p>
-{% endif %}
+<article>
+    <h2>Questions :</h2>
+    {% if questions_list %}
+        <ol>
+        {% for question in questions_list %}
+            <li>{% include "messaging/_question_summary.html" %}</li>
+        {% endfor %}
+        </ol>
+    {% else %}
+        <p>Aucune question.</p>
+    {% endif %}
+</article>

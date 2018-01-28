@@ -4,7 +4,14 @@
 {% block main_col %}
 
 {% include "messaging/_question_details.html" with question=question %}
-{% include "messaging/_answer_create.html" %}
+{% if request.user.is_authenticated %}
+    {% include "messaging/_answer_create.html" %}
+{% else %}
+<article>
+    <h2>Répondre</h2>
+    <a href="{% url 'login' %}?next={% firstof request.path '/' %}" class="text-info">Loguez vous pour répondre.</a>
+</article>
+{% endif %}
 {% include "messaging/_answers_show.html" %}
 
 {% endblock main_col %}

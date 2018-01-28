@@ -5,10 +5,16 @@ body {
 .container {
     /* width-max: 80%; */
     /* width: 800px; */
-    background: white;
+    background: #17a2b8;
     border: 1px solid #17a2b8;
 }
 
 main {
     margin: 10px;
+}
+
+article {
+    border: 1px solid #17a2b8;
+    background: white;
+    padding: 10px;
 }
