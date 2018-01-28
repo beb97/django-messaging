@@ -7,10 +7,9 @@ urlpatterns = [
     # messages/
     path('', views.index, name='index'),
     # messages/1
-    path('<int:message_id>/', views.detail, name='detail'),
-    # messages/1/results/
-    path('<int:message_id>/results/', views.results, name='results'),
+    path('<int:question_id>/', views.detail, name='detail'),
     # messages/1/answer/
-    path('<int:message_id>/answer', views.answer, name='answer'),
-    path('question/', views.question, name='question')
+    path('<int:question_id>/answer', views.answer, name='answer'),
+    path('question/', views.question, name='question'),
+    path('search/', views.search, name='search'),
 ]
